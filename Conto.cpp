@@ -20,7 +20,7 @@ void Conto::transazioneIngresso(int x) {
 }
 void Conto::transazioneUscita(int x) {
     if(saldo<x){
-        cout << "Non e' possibile effettuare la seguente operazione, in quanto il saldo attuale non e' sufficiente";
+        cout << "Non e' possibile effettuare la seguente operazione, in quanto il saldo attuale non e' sufficiente" <<endl;
     }
     else saldo -= x;
 }
@@ -30,5 +30,5 @@ Conto::Conto() {
 }
 
 Conto::Conto(float saldo) {
-
+    this->saldo=saldo;
 }
