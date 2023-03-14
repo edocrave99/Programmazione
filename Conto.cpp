@@ -2,7 +2,7 @@
 // Created by zcrav on 14/03/2023.
 //
 
-#include "conto.h"
+#include "Conto.h"
 #include <iostream>
 #include <stdio.h>
 using namespace std;
