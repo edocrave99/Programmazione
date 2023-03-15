@@ -61,6 +61,18 @@ build CMakeFiles/Elaborato.dir/Conto.cpp.obj: CXX_COMPILER__Elaborato_Debug C$:/
   OBJECT_DIR = CMakeFiles\Elaborato.dir
   OBJECT_FILE_DIR = CMakeFiles\Elaborato.dir
 
+build CMakeFiles/Elaborato.dir/Transazione.cpp.obj: CXX_COMPILER__Elaborato_Debug C$:/Elaborato/Transazione.cpp || cmake_object_order_depends_target_Elaborato
+  DEP_FILE = CMakeFiles\Elaborato.dir\Transazione.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Elaborato.dir
+  OBJECT_FILE_DIR = CMakeFiles\Elaborato.dir
+
+build CMakeFiles/Elaborato.dir/Data.cpp.obj: CXX_COMPILER__Elaborato_Debug C$:/Elaborato/Data.cpp || cmake_object_order_depends_target_Elaborato
+  DEP_FILE = CMakeFiles\Elaborato.dir\Data.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\Elaborato.dir
+  OBJECT_FILE_DIR = CMakeFiles\Elaborato.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Elaborato
@@ -69,7 +81,7 @@ build CMakeFiles/Elaborato.dir/Conto.cpp.obj: CXX_COMPILER__Elaborato_Debug C$:/
 #############################################
 # Link the executable Elaborato.exe
 
-build Elaborato.exe: CXX_EXECUTABLE_LINKER__Elaborato_Debug CMakeFiles/Elaborato.dir/main.cpp.obj CMakeFiles/Elaborato.dir/Conto.cpp.obj
+build Elaborato.exe: CXX_EXECUTABLE_LINKER__Elaborato_Debug CMakeFiles/Elaborato.dir/main.cpp.obj CMakeFiles/Elaborato.dir/Conto.cpp.obj CMakeFiles/Elaborato.dir/Transazione.cpp.obj CMakeFiles/Elaborato.dir/Data.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Elaborato.dir

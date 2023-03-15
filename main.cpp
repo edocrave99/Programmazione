@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Conto.h"
+#include <string>
 
 using namespace std;
 
@@ -9,8 +10,9 @@ using namespace std;
 
 int main() {
     Conto *c = new Conto(5000);
-    int selettore1, selettore2, x;
+    int selettore1, selettore2, v;
     float s;
+    std::string d;
     bool f = false;
     cout << "Benvenuto sul gestore di transazione finanziarie di Cravegni Edoardo" << endl;
 
@@ -18,6 +20,7 @@ int main() {
         cout << "Ecco le operazioni che posso effettuare:" << endl;
         cout << "1) Visualizza il tuo saldo" << endl;
         cout << "2) Effettua una transazione" << endl;
+        cout << "3) Visualizza il tuo storico delle transazioni" <<endl;
         cout << "0) Uscire" << endl;
         cout << "Inserire il numero corrispondente all'operazione che si desidera effettuare: " << endl;
         cin >> selettore1;
@@ -36,13 +39,19 @@ int main() {
                 switch (selettore2) {
                     case 1:
                         cout << "Inserire il valore da aggiungere al saldo: ";
-                        cin >> x;
-                        c->transazioneIngresso(x);
+                        cin >> v;
+                        cout << "Inserire una descrizione per la nuova transazione: ";
+                        cin >> d;
+                        Transazione t1 = new Transazione(1, d, v);
+                        c->aggiungiTransazione(t1);
                         break;
                     case 2:
                         cout << "Inserire il valore che desidera prelevare: ";
-                        cin >> x;
-                        c->transazioneUscita(x);
+                        cin >> v;
+                        cout << "Inserire una descrizione per la nuova transazione: ";
+                        cin >> d;
+                        Transazione t2 = new Transazione(0, d, v);
+                        c->aggiungiTransazione(t2);
                         break;
                     case 0:
                         break;
@@ -50,6 +59,9 @@ int main() {
                         cout << "Il numero inserito non corrisponde a nessuna operazione" << endl;
                         break;
                 }
+                break;
+            case 3:
+                c->stampaTransazioni();
                 break;
             case 0:
                 f = true;

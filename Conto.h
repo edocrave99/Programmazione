@@ -6,17 +6,27 @@
 #define PROGETTO_CONTO_H
 
 
-class Conto {
-private:
-    float saldo;
+#include "Transazione.h"
+#include <list>
 
-public:
-    Conto();
-    Conto(float saldo);
-    float getSaldo() const;
-    void setSaldo(float saldo);
-    void transazioneIngresso(int x);
-    void transazioneUscita(int x);
+class Conto {
+    private:
+
+        float saldo;
+        std::list<Transazione> listaTransazioni;
+
+    public:
+        Conto();
+
+        explicit Conto(float saldo);
+
+        float getSaldo() const;
+
+        void setSaldo(float saldo);
+
+        void aggiungiTransazione(const Transazione& t);
+
+        void stampaTransazioni() const;
 };
 
 

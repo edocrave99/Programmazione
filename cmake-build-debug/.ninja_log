@@ -1,23 +1,7 @@
 # ninja log v5
-0	684	7005220543114524	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-687	886	7005220545099496	Elaborato.exe	2b84677b8132f2f6
-5	592	7005222060008908	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-15	597	7005222060068752	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
-598	755	7005222061610081	Elaborato.exe	a4d04cddb1cffc3e
-7	620	7005229557193329	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-14	621	7005229557203313	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
-621	781	7005229558764423	Elaborato.exe	a4d04cddb1cffc3e
-3	351	7005230225415754	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
-352	448	7005230226353256	Elaborato.exe	a4d04cddb1cffc3e
-3	358	7005230381845932	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-359	458	7005230382811689	Elaborato.exe	a4d04cddb1cffc3e
-3	367	7005234386669554	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-367	466	7005234387622063	Elaborato.exe	a4d04cddb1cffc3e
-3	374	7005234718200204	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-375	471	7005234719137691	Elaborato.exe	a4d04cddb1cffc3e
-5	353	7005236435863962	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-354	451	7005236436821409	Elaborato.exe	a4d04cddb1cffc3e
 3	340	7005241597182550	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
-340	448	7005241598239736	Elaborato.exe	a4d04cddb1cffc3e
-3	340	7005242210049519	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
 341	434	7005242210953775	Elaborato.exe	a4d04cddb1cffc3e
+3	340	7005242210049519	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
+18	491	7005814410174110	CMakeFiles/Elaborato.dir/Transazione.cpp.obj	d5fadd8ab6c053cb
+24	214	7005962933891796	CMakeFiles/Elaborato.dir/Data.cpp.obj	ab74c5bd2a42420
+12	316	7005963840709552	CMakeFiles/Elaborato.dir/Transazione.cpp.obj	d5fadd8ab6c053cb

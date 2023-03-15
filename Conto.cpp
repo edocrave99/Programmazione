@@ -4,31 +4,40 @@
 
 #include "Conto.h"
 #include <iostream>
-#include <stdio.h>
+#include <list>
 using namespace std;
+
+Conto::Conto() {}
+
+Conto::Conto(float saldo) : saldo(saldo) {}
 
 float Conto::getSaldo() const {
     return saldo;
 }
 
 void Conto::setSaldo(float saldo) {
-    this->saldo=saldo;
+    Conto::saldo=saldo;
 }
 
-void Conto::transazioneIngresso(int x) {
-    saldo += x;
-}
-void Conto::transazioneUscita(int x) {
-    if(saldo<x){
-        cout << "Non e' possibile effettuare la seguente operazione, in quanto il saldo attuale non e' sufficiente" <<endl;
+void Conto::aggiungiTransazione(const Transazione &t) {
+    if(t.getTipo()==0)
+        if(t.getImporto()>saldo)
+            cout << "Non e' stato possibile eseguire la transazione desiderata in quanto il saldo attuale non è sufficiente" << endl;
+        else {
+            cout << "La transazione e' stata eseguita con successo" << endl;
+            listaTransazioni.push_back(t);
+            saldo-=t.getImporto();
+        }
+    else {
+        cout << "La transazione e' stata eseguita con successo" << endl;
+        listaTransazioni.push_back(t);
+        saldo+=t.getImporto();
     }
-    else saldo -= x;
 }
 
-Conto::Conto() {
-
-}
-
-Conto::Conto(float saldo) {
-    this->saldo=saldo;
+void Conto::stampaTransazioni() const {
+    std::cout << "Transazioni:" << std::endl;
+    for (const auto& t : listaTransazioni) {
+        std::cout << t << std::endl;
+    }
 }
