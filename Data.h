@@ -54,6 +54,8 @@ class Data {
                 return true;
             else return false;
         }
+
+        void stampaData() const;
 };
 
 

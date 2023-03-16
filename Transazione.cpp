@@ -3,6 +3,7 @@
 //
 
 #include "Transazione.h"
+#include "Data.h"
 
 Transazione::Transazione() {}
 

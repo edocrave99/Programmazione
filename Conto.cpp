@@ -3,6 +3,7 @@
 //
 
 #include "Conto.h"
+#include "Transazione.h"
 #include <iostream>
 #include <list>
 using namespace std;
@@ -38,6 +39,16 @@ void Conto::aggiungiTransazione(const Transazione &t) {
 void Conto::stampaTransazioni() const {
     std::cout << "Transazioni:" << std::endl;
     for (const auto& t : listaTransazioni) {
-        std::cout << t << std::endl;
+        cout << "Tipo: ";
+        auto tipo = t.getTipo();
+        if (tipo== true)
+            cout << "In ingresso" <<endl;
+        else cout << "In uscita" <<endl;
+        cout << "Importo: ";
+        cout << t.getImporto() << endl;
+        cout << "Data: ";
+        cout << "" <<endl; //************************************************
+        cout << "Descrizione: ";
+        cout << t.getDescrizione() << endl;
     }
 }
