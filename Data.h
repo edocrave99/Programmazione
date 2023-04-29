@@ -35,6 +35,8 @@ class Data {
 
         Data();
 
+        Data(int giorno, int mese, int anno);
+
         int getGiorno() const;
 
         void setGiorno(int giorno);
@@ -47,13 +49,7 @@ class Data {
 
         void setAnno(int anno);
 
-        bool isValid() const {
-            if (mese < 1 || mese > 12 || giorno < 1) return false;
-            int giorni_del_mese = giorniInMese(mese, anno);
-            if (giorno <= giorni_del_mese)
-                return true;
-            else return false;
-        }
+        bool isValid() const;
 
         void stampaData() const;
 };

@@ -5,6 +5,7 @@
 #include "Conto.h"
 #include "Transazione.h"
 #include <iostream>
+#include <fstream>
 #include <list>
 using namespace std;
 
@@ -23,14 +24,12 @@ void Conto::setSaldo(float saldo) {
 void Conto::aggiungiTransazione(const Transazione &t) {
     if(t.getTipo()==0)
         if(t.getImporto()>saldo)
-            cout << "Non e' stato possibile eseguire la transazione desiderata in quanto il saldo attuale non è sufficiente" << endl;
+            cout << "Non e' stato possibile eseguire la transazione desiderata in quanto il saldo attuale non e' sufficiente" << endl;
         else {
-            cout << "La transazione e' stata eseguita con successo" << endl;
             listaTransazioni.push_back(t);
             saldo-=t.getImporto();
         }
     else {
-        cout << "La transazione e' stata eseguita con successo" << endl;
         listaTransazioni.push_back(t);
         saldo+=t.getImporto();
     }
@@ -47,7 +46,10 @@ void Conto::stampaTransazioni() const {
         cout << "Importo: ";
         cout << t.getImporto() << endl;
         cout << "Data: ";
-        cout << "" <<endl; //************************************************
+        auto d=t.getData();
+        cout << endl;
+        d.stampaData();
+        cout << endl;
         cout << "Descrizione: ";
         cout << t.getDescrizione() << endl;
     }
