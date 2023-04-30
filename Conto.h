@@ -1,9 +1,5 @@
-//
-// Created by zcrav on 14/03/2023.
-//
-
-#ifndef PROGETTO_CONTO_H
-#define PROGETTO_CONTO_H
+#ifndef ELABORATO_CONTO_H
+#define ELABORATO_CONTO_H
 
 
 #include "Transazione.h"
@@ -24,7 +20,7 @@ class Conto {
 
         void setSaldo(float saldo);
 
-        void aggiungiTransazione(const Transazione& t);
+        bool aggiungiTransazione(const Transazione& t);
 
         void stampaTransazioni() const;
 };

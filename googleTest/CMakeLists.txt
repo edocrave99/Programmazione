@@ -6,7 +6,7 @@ set(gtest_SOURCE_DIR, ./lib/googletest/)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
-set(TEST_SOURCE_FILES runAllTests.cpp)
+set(TEST_SOURCE_FILES RunAllTests.cpp ContoTest.cpp TransazioneTest.cpp DataTest.cpp)
 
 add_executable(GoogleTests ${TEST_SOURCE_FILES})
 

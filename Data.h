@@ -1,7 +1,3 @@
-//
-// Created by zcrav on 15/03/2023.
-//
-
 #ifndef ELABORATO_DATA_H
 #define ELABORATO_DATA_H
 

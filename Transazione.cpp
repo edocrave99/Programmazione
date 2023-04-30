@@ -1,11 +1,9 @@
-//
-// Created by zcrav on 15/03/2023.
-//
-
 #include "Transazione.h"
 #include "Data.h"
 
-Transazione::Transazione() {}
+Transazione::Transazione() {
+    setImporto(0);
+}
 
 Transazione::Transazione(bool tipo, const std::string &descrizione, float importo) : tipo(tipo),
                                                                                      descrizione(descrizione),

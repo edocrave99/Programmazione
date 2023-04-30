@@ -1,15 +1,12 @@
-//
-// Created by zcrav on 14/03/2023.
-//
-
 #include "Conto.h"
 #include "Transazione.h"
 #include <iostream>
-#include <fstream>
-#include <list>
+
 using namespace std;
 
-Conto::Conto() {}
+Conto::Conto() {
+    setSaldo(0);
+}
 
 Conto::Conto(float saldo) : saldo(saldo) {}
 
@@ -21,10 +18,11 @@ void Conto::setSaldo(float saldo) {
     Conto::saldo=saldo;
 }
 
-void Conto::aggiungiTransazione(const Transazione &t) {
+bool Conto::aggiungiTransazione(const Transazione &t) {
+    bool r=true;
     if(t.getTipo()==0)
         if(t.getImporto()>saldo)
-            cout << "Non e' stato possibile eseguire la transazione desiderata in quanto il saldo attuale non e' sufficiente" << endl;
+            r=false;
         else {
             listaTransazioni.push_back(t);
             saldo-=t.getImporto();
@@ -33,6 +31,7 @@ void Conto::aggiungiTransazione(const Transazione &t) {
         listaTransazioni.push_back(t);
         saldo+=t.getImporto();
     }
+    return r;
 }
 
 void Conto::stampaTransazioni() const {

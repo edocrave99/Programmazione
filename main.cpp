@@ -79,8 +79,10 @@ int main() {
                         t->setImporto(v);
                         t->setDescrizione(descrizione);
                         t->setData(*d);
-                        c.aggiungiTransazione(*t);
-                        cout << "La transazione e' stata eseguita con successo" << endl;
+                        type=c.aggiungiTransazione(*t);
+                        if(type)
+                            cout << "La transazione e' stata eseguita con successo" << endl;
+                        else cout << "Si e' verificato un errore nella transazione" << endl;
                         addt << type << " " << v << " "<< descrizione << " " << g << " " << m << " " << a << "\n";
                         break;
                     case 2:
@@ -108,8 +110,10 @@ int main() {
                         t->setImporto(v);
                         t->setDescrizione(descrizione);
                         t->setData(*d);
-                        c.aggiungiTransazione(*t);
-                        cout << "La transazione e' stata eseguita con successo" << endl;
+                        type=c.aggiungiTransazione(*t);
+                        if(type)
+                            cout << "La transazione e' stata eseguita con successo" << endl;
+                        else cout << "La transazione non e' stata eseguita, in quanto il credito per completarla non era sufficiente" << endl;
                         addt << type << " " << v << " "<< descrizione << " " << g << " " << m << " " << a << "\n";
                         break;
                     case 0:

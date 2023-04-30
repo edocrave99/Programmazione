@@ -1,13 +1,13 @@
-//
-// Created by zcrav on 15/03/2023.
-//
-
 #include "Data.h"
 #include <iostream>
 
 using namespace std;
 
-Data::Data() {}
+Data::Data() {
+    setGiorno(0);
+    setMese(0);
+    setAnno(0);
+}
 
 Data::Data(int giorno, int mese, int anno) : giorno(giorno), mese(mese), anno(anno) {}
 

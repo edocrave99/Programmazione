@@ -219,15 +219,29 @@ build install/strip: phony CMakeFiles/install/strip.util
 
 build cmake_object_order_depends_target_GoogleTests: phony || cmake_object_order_depends_target_core cmake_object_order_depends_target_gtest cmake_object_order_depends_target_gtest_main
 
-build googleTest/CMakeFiles/GoogleTests.dir/runAllTests.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/runAllTests.cpp || cmake_object_order_depends_target_GoogleTests
-  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\runAllTests.cpp.obj.d
+build googleTest/CMakeFiles/GoogleTests.dir/RunAllTests.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/RunAllTests.cpp || cmake_object_order_depends_target_GoogleTests
+  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\RunAllTests.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem C:/Elaborato/googleTest/lib/googletest/googletest/include -isystem C:/Elaborato/googleTest/lib/googletest/googletest
   OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
   OBJECT_FILE_DIR = googleTest\CMakeFiles\GoogleTests.dir
 
-build googleTest/CMakeFiles/GoogleTests.dir/1.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/1.cpp || cmake_object_order_depends_target_GoogleTests
-  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\1.cpp.obj.d
+build googleTest/CMakeFiles/GoogleTests.dir/ContoTest.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/ContoTest.cpp || cmake_object_order_depends_target_GoogleTests
+  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\ContoTest.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Elaborato/googleTest/lib/googletest/googletest/include -isystem C:/Elaborato/googleTest/lib/googletest/googletest
+  OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
+  OBJECT_FILE_DIR = googleTest\CMakeFiles\GoogleTests.dir
+
+build googleTest/CMakeFiles/GoogleTests.dir/TransazioneTest.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/TransazioneTest.cpp || cmake_object_order_depends_target_GoogleTests
+  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\TransazioneTest.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Elaborato/googleTest/lib/googletest/googletest/include -isystem C:/Elaborato/googleTest/lib/googletest/googletest
+  OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
+  OBJECT_FILE_DIR = googleTest\CMakeFiles\GoogleTests.dir
+
+build googleTest/CMakeFiles/GoogleTests.dir/DataTest.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/DataTest.cpp || cmake_object_order_depends_target_GoogleTests
+  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\DataTest.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   INCLUDES = -isystem C:/Elaborato/googleTest/lib/googletest/googletest/include -isystem C:/Elaborato/googleTest/lib/googletest/googletest
   OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
@@ -241,7 +255,7 @@ build googleTest/CMakeFiles/GoogleTests.dir/1.cpp.obj: CXX_COMPILER__GoogleTests
 #############################################
 # Link the executable googleTest\GoogleTests.exe
 
-build googleTest/GoogleTests.exe: CXX_EXECUTABLE_LINKER__GoogleTests_Debug googleTest/CMakeFiles/GoogleTests.dir/runAllTests.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/1.cpp.obj | lib/libgtest.a lib/libgtest_main.a libcore.a libcore.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libcore.a
+build googleTest/GoogleTests.exe: CXX_EXECUTABLE_LINKER__GoogleTests_Debug googleTest/CMakeFiles/GoogleTests.dir/RunAllTests.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/ContoTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/TransazioneTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/DataTest.cpp.obj | lib/libgtest.a lib/libgtest_main.a libcore.a libcore.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libcore.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libcore.a  libcore.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
