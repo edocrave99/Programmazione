@@ -1,6 +1,7 @@
 #include "Conto.h"
 #include "Transazione.h"
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -39,13 +40,13 @@ void Conto::stampaTransazioni() const {
     for (const auto& t : listaTransazioni) {
         cout << "Tipo: ";
         auto tipo = t.getTipo();
-        if (tipo== true)
-            cout << "In ingresso" <<endl;
-        else cout << "In uscita" <<endl;
+        if (tipo == true)
+            cout << "In ingresso" << endl;
+        else cout << "In uscita" << endl;
         cout << "Importo: ";
         cout << t.getImporto() << endl;
         cout << "Data: ";
-        auto d=t.getData();
+        auto d = t.getData();
         cout << endl;
         d.stampaData();
         cout << endl;

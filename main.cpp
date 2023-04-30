@@ -1,5 +1,4 @@
 #include <iostream>
-#include <stdio.h>
 #include <fstream>
 #include "Conto.h"
 #include "Transazione.h"
@@ -25,13 +24,11 @@ int main() {
         d->setMese(m);
         d->setAnno(a);
         t->setTipo(type);
-        t->setImporto(v);
+        t->setImporto(v);                                       //ciclo per prelevare le transazioni dal file ed inserirle nella listaTransazioni
         t->setDescrizione(descrizione);
         t->setData(*d);
-        c.aggiungiTransazione(*t);
     }
     cout << "Benvenuto sul gestore di transazione finanziarie di Cravegni Edoardo" << endl;
-
     while (!f1) {
         cout << "Ecco le operazioni che posso effettuare:" << endl;
         cout << "1) Visualizza il tuo saldo" << endl;
@@ -40,14 +37,13 @@ int main() {
         cout << "0) Uscire" << endl;
         cout << "Inserire il numero corrispondente all'operazione che si desidera effettuare:" << endl;
         cin >> sel1;
-
         switch (sel1) {
             case 1:
                 s = c.getSaldo();
                 cout << "Il saldo attuale e': " << s << endl;
                 break;
             case 2:
-                addt.open("C:\\Elaborato\\cmake-build-debug\\Conto.txt", std::ios::app);
+                addt.open(R"(C:\Elaborato\cmake-build-debug\Conto.txt)", std::ios::app);
                 cout << "Che tipo di transazione desidera effettuare" << endl;
                 cout << "1) In ingresso" << endl;
                 cout << "2) In uscita" << endl;

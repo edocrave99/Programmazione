@@ -247,6 +247,13 @@ build googleTest/CMakeFiles/GoogleTests.dir/DataTest.cpp.obj: CXX_COMPILER__Goog
   OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
   OBJECT_FILE_DIR = googleTest\CMakeFiles\GoogleTests.dir
 
+build googleTest/CMakeFiles/GoogleTests.dir/ContoFixture.cpp.obj: CXX_COMPILER__GoogleTests_Debug C$:/Elaborato/googleTest/ContoFixture.cpp || cmake_object_order_depends_target_GoogleTests
+  DEP_FILE = googleTest\CMakeFiles\GoogleTests.dir\ContoFixture.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  INCLUDES = -isystem C:/Elaborato/googleTest/lib/googletest/googletest/include -isystem C:/Elaborato/googleTest/lib/googletest/googletest
+  OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
+  OBJECT_FILE_DIR = googleTest\CMakeFiles\GoogleTests.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target GoogleTests
@@ -255,7 +262,7 @@ build googleTest/CMakeFiles/GoogleTests.dir/DataTest.cpp.obj: CXX_COMPILER__Goog
 #############################################
 # Link the executable googleTest\GoogleTests.exe
 
-build googleTest/GoogleTests.exe: CXX_EXECUTABLE_LINKER__GoogleTests_Debug googleTest/CMakeFiles/GoogleTests.dir/RunAllTests.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/ContoTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/TransazioneTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/DataTest.cpp.obj | lib/libgtest.a lib/libgtest_main.a libcore.a libcore.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libcore.a
+build googleTest/GoogleTests.exe: CXX_EXECUTABLE_LINKER__GoogleTests_Debug googleTest/CMakeFiles/GoogleTests.dir/RunAllTests.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/ContoTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/TransazioneTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/DataTest.cpp.obj googleTest/CMakeFiles/GoogleTests.dir/ContoFixture.cpp.obj | lib/libgtest.a lib/libgtest_main.a libcore.a libcore.a lib/libgtest.a || lib/libgtest.a lib/libgtest_main.a libcore.a
   FLAGS = -g
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libcore.a  libcore.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = googleTest\CMakeFiles\GoogleTests.dir
