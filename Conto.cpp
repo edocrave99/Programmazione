@@ -36,7 +36,9 @@ bool Conto::aggiungiTransazione(const Transazione &t) {
 }
 
 void Conto::stampaTransazioni() const {
-    std::cout << "Transazioni:" << std::endl;
+    cout << "TRANSAZIONI:" << endl;
+    cout<< endl;
+
     for (const auto& t : listaTransazioni) {
         cout << "Tipo: ";
         auto tipo = t.getTipo();
@@ -47,10 +49,10 @@ void Conto::stampaTransazioni() const {
         cout << t.getImporto() << endl;
         cout << "Data: ";
         auto d = t.getData();
-        cout << endl;
         d.stampaData();
         cout << endl;
         cout << "Descrizione: ";
         cout << t.getDescrizione() << endl;
+        cout << endl;
     }
 }
