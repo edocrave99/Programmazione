@@ -10,35 +10,22 @@ using namespace std;
     Le classi devono essere in gradi leggere e salvare i dati su file. */
 
 int main() {
-    ifstream file(R"(C:\Elaborato\cmake-build-debug\Conto.txt)");
-    //apre il file di testo contenente le transazioni usando un oggetto della classe ifstream(solo lettura)
-
-    ofstream addt;
-    //dichairo un oggetto di tipo ofstream(solo scrittura) che servira' nel caso in cui si aggiungano delle transazioni
 
     Conto c(0);
     auto *t = new Transazione();
-    Data *d = new Data();
+    auto *d = new Data();
 
     int sel1, sel2, g, m, a;
     //le variabili sel1 e sel2 servono per gestire gli switch case, mentre g,m,a servonjo invece per la data delle eventuali nuove transazioni
     float s;
     //variabili usata per visualizzare il saldo del conto e per settare l'importo delle transazioni
-    std::string descrizione;
+    string descrizione;
     //variabile per inserire la descrizione di una nuova transazione
     bool f1 = false,type, f2;
     //f1 serve per gestire il ciclo all'interno del quale è inserito lo switch, f2  gestisce il ciclo per l'inserimento della data di una transazione, mentre type serve per stabilire il tipo delle transazioni (ingresso o uscita), type servira' invece per impostare il tipo delle transazioni
 
-    while(file >> type >> s >> descrizione >> g >> m >> a) {
-        d->setGiorno(g);
-        d->setMese(m);
-        d->setAnno(a);
-        t->setTipo(type);                                   //ciclo per prelevare le transazioni dal file ed inserirle nella listaTransazioni
-        t->setImporto(s);
-        t->setDescrizione(descrizione);
-        t->setData(*d);
-        c.aggiungiTransazione(*t);
-    }
+    c.aggiornamentoIniziale();
+    //le transazioni presenti sul file vengono inserite nella lista
 
     cout << "Benvenuto sul gestore di transazione finanziarie di Cravegni Edoardo" << endl;
     while (!f1) {
@@ -61,8 +48,6 @@ int main() {
                 break;
 
             case 2:
-                addt.open(R"(C:\Elaborato\cmake-build-debug\Conto.txt)", std::ios::app);
-                //apre il indicando di posizionarsi in scrittura sempre alla fine del file, in modo tale da non sovrascrivere le altre transazioni
 
                 cout << "Che tipo di transazione desidera effettuare:" << endl;
                 cout << "1) In ingresso" << endl;
@@ -109,9 +94,6 @@ int main() {
                             cout << "La transazione e' stata eseguita con successo" << endl;
                         else cout << "Si e' verificato un errore nella transazione" << endl;
 
-                        addt << type << " " << s << " "<< descrizione << " " << g << " " << m << " " << a << "\n";
-                        //questa istruzione serve per poter aggiungere la transazione al file di testo
-
                         break;
 
                     case 2:
@@ -144,7 +126,6 @@ int main() {
                         if(f2)
                             cout << "La transazione e' stata eseguita con successo" << endl;
                         else cout << "La transazione non e' stata eseguita, in quanto il credito per completarla non era sufficiente" << endl;
-                        addt << type << " " << s << " "<< descrizione << " " << g << " " << m << " " << a << "\n";
 
                         break;
 
@@ -158,8 +139,6 @@ int main() {
 
                         break;
                 }
-                addt.close();
-                //e' una funzione utilizzata per poter chiudere il file associato all'oggetto
 
                 break;
 
@@ -180,7 +159,5 @@ int main() {
                 break;
         }
     }
-    file.close();
-    //viene chiuso anche il file in lettura
     return 0;
 }
