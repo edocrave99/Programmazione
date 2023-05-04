@@ -50,6 +50,17 @@ bool Conto::aggiungiTransazione(const Transazione &t) {
     return r;
 }
 
+void Conto::aggiungiTransazioneTest(const Transazione &t) {
+    //Metodo usato nella unit testing in modo da non alterare listaTransazioni ed il file contenente le transazioni
+
+    if(t.getTipo()==1)
+        saldo+=t.getImporto();
+    else if(t.getImporto() <= saldo)
+            saldo-=t.getImporto();
+         else
+            cout << "Non e' stato possibile effettuare la transazione in quanto il saldo attuale non era sufficiente" ;
+}
+
 void Conto::stampaTransazioni() const {
     cout << "TRANSAZIONI:" << endl;
     cout << endl;
@@ -109,4 +120,14 @@ void Conto::scaricaTransazione(const Transazione &t){
         listaTransazioni.push_back(t);
         saldo+=t.getImporto();
     }
+}
+
+void Conto::scaricaTransazioneTest(const Transazione &t){
+    //si differenzia da scaricaTransazione() in quanto questo metodo non inserisce la transazione in listaTransazioni, infatti viene usato
+    //solamente all'interno della unit testing
+
+    if(t.getTipo()==0)
+        saldo-=t.getImporto();
+    else
+        saldo+=t.getImporto();
 }

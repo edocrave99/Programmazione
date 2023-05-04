@@ -22,11 +22,15 @@ class Conto {
 
         bool aggiungiTransazione(const Transazione& t);
 
+        void aggiungiTransazioneTest(const Transazione& t);
+
         void stampaTransazioni() const;
 
         void aggiornamentoIniziale();
 
         void scaricaTransazione(const Transazione &t);
+
+        void scaricaTransazioneTest(const Transazione &t);
 };
 
 
