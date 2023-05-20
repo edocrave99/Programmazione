@@ -45,3 +45,14 @@
 1320	4879	7048973551173460	googleTest/GoogleTests.exe	17ac14ff32a447d6
 6	1337	7048973988269527	googleTest/CMakeFiles/GoogleTests.dir/ContoFixture.cpp.obj	b149195a4e7a0141
 1337	4949	7048974024343911	googleTest/GoogleTests.exe	17ac14ff32a447d6
+30	762	7063060388709595	CMakeFiles/Elaborato.dir/Transazione.cpp.obj	d5fadd8ab6c053cb
+21	964	7063060390759214	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
+7	985	7063060390958670	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
+22	437	7063060759598867	CMakeFiles/Elaborato.dir/Transazione.cpp.obj	d5fadd8ab6c053cb
+9	793	7063060763189255	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
+3	808	7063060763328880	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
+19	655	7063061106211539	CMakeFiles/Elaborato.dir/Transazione.cpp.obj	d5fadd8ab6c053cb
+13	705	7063061106720180	CMakeFiles/Elaborato.dir/Data.cpp.obj	ab74c5bd2a42420
+8	776	7063061107428287	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
+4	803	7063061107717517	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
+803	1105	7063061110710183	Elaborato.exe	9213872975b94d6b

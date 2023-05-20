@@ -29,8 +29,12 @@ float Transazione::getImporto() const {
     return importo;
 }
 
-void Transazione::setImporto(float importo) {
-    Transazione::importo = importo;
+bool Transazione::setImporto(float importo) {
+    if(importo > 0){
+        Transazione::importo = importo;
+        return true;
+    }
+    else return false;
 }
 
 const Data &Transazione::getData() const {

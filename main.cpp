@@ -10,8 +10,12 @@ using namespace std;
     Le classi devono essere in gradi leggere e salvare i dati su file. */
 
 int main() {
+    string descrizione;
+    //variabile per inserire la descrizione di una nuova transazione, inizialmente viene usata anche per attribuire il nome al conto
 
-    Conto c(0);
+    cout << "Inserire un nome per il proprio conto: " << endl;
+    cin >> descrizione;
+    Conto c(descrizione, 0);
     auto *t = new Transazione();
     auto *d = new Data();
 
@@ -19,8 +23,6 @@ int main() {
     //le variabili sel1 e sel2 servono per gestire gli switch case, mentre g,m,a servonjo invece per la data delle eventuali nuove transazioni
     float s;
     //variabili usata per visualizzare il saldo del conto e per settare l'importo delle transazioni
-    string descrizione;
-    //variabile per inserire la descrizione di una nuova transazione
     bool f1 = false,type, f2;
     //f1 serve per gestire il ciclo all'interno del quale è inserito lo switch, f2  gestisce il ciclo per l'inserimento della data di una transazione, mentre type serve per stabilire il tipo delle transazioni (ingresso o uscita), type servira' invece per impostare il tipo delle transazioni
 
@@ -63,10 +65,15 @@ int main() {
                         type=true;
                         f2=false;
                         cout << "Inserire il valore da aggiungere al saldo:" << endl;
-                        cin >> s;
+                        while(!f2) {
+                            cin >> s;
+                            f2=t->setImporto(s);
+                            if(!f2)
+                                cout << "L'importo inserito non e' valido, si prega di inserirne un altro: " << endl;
+                        }
                         cout << "Inserire una descrizione per la nuova transazione:" << endl;
                         cin >> descrizione;
-
+                        f2=false;
                         while(!f2) {
                             cout << "Inserire il giorno in cui e' stata effettuata la transazione:" << endl;
                             cin >> g;
@@ -85,7 +92,6 @@ int main() {
                         }
 
                         t->setTipo(type);
-                        t->setImporto(s);
                         t->setDescrizione(descrizione);
                         t->setData(*d);
                         f2=c.aggiungiTransazione(*t);
@@ -100,9 +106,15 @@ int main() {
                         type=false;
                         f2=false;
                         cout << "Inserire l'ammontare che si desidera prelevare:"<< endl;
-                        cin >> s;
+                        while(!f2) {
+                            cin >> s;
+                            f2=t->setImporto(s);
+                            if(!f2)
+                                cout << "L'importo inserito non e' valido, si prega di inserirne un altro: " << endl;
+                        }
                         cout << "Inserire una descrizione per la nuova transazione:" << endl;
                         cin >> descrizione;
+                        f2=false;
                         while(!f2) {
                             cout << "Inserire il giorno in cui e' stata effettuata la transazione:" << endl;
                             cin >> g;
@@ -118,7 +130,6 @@ int main() {
                             else cout << "La data inserita non e' valida, si prega di inserirne un altra!" << endl;
                         }
                         t->setTipo(type);
-                        t->setImporto(s);
                         t->setDescrizione(descrizione);
                         t->setData(*d);
                         f2=c.aggiungiTransazione(*t);

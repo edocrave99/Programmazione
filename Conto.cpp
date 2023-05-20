@@ -9,7 +9,7 @@ Conto::Conto() {
     setSaldo(0);
 }
 
-Conto::Conto(float saldo) : saldo(saldo) {}
+Conto::Conto(string nome, float saldo) : nome(nome), saldo(saldo) {}
 
 float Conto::getSaldo() const {
     return saldo;
@@ -66,6 +66,7 @@ void Conto::stampaTransazioni() const {
     cout << endl;
 
     for (const auto &t: listaTransazioni) {
+        string s;
         cout << "Tipo: ";
         auto tipo = t.getTipo();
         if (tipo == true)
@@ -75,7 +76,8 @@ void Conto::stampaTransazioni() const {
         cout << t.getImporto() << endl;
         cout << "Data: ";
         auto d = t.getData();
-        d.stampaData();
+        s=d.toString();
+        cout << s;
         cout << endl;
         cout << "Descrizione: ";
         cout << t.getDescrizione() << endl;

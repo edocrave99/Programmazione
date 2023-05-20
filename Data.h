@@ -1,6 +1,8 @@
 #ifndef ELABORATO_DATA_H
 #define ELABORATO_DATA_H
 
+#include <iostream>
+
 
 class Data {
     private:
@@ -47,7 +49,7 @@ class Data {
 
         bool isValid() const;
 
-        void stampaData() const;
+        std::string toString() const;
 };
 
 

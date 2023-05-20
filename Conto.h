@@ -8,13 +8,14 @@
 class Conto {
     private:
 
+        std::string nome;
         float saldo;
         std::list<Transazione> listaTransazioni;
 
     public:
         Conto();
 
-        explicit Conto(float saldo);
+        explicit Conto(std::string nome, float saldo);
 
         float getSaldo() const;
 

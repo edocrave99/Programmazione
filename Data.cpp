@@ -1,5 +1,6 @@
 #include "Data.h"
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -35,16 +36,12 @@ void Data::setAnno(int anno) {
     Data::anno = anno;
 }
 
-void Data::stampaData() const {
-    int g, m, a;
-    g=getGiorno();
-    m=getMese();
-    a=getAnno();
-    cout << g;
-    cout << "/";
-    cout << m;
-    cout << "/";
-    cout << a;
+string Data::toString() const {
+    ostringstream s1;
+    string s2;
+    s1 << getGiorno() << "/" << getMese() << "/" << getAnno();
+    s2 = s1.str();
+    return s2;
 }
 
 bool Data::isValid() const {

@@ -27,7 +27,7 @@ class Transazione {
 
         float getImporto() const;
 
-        void setImporto(float importo);
+        bool setImporto(float importo);
 
         const Data &getData() const;
 
