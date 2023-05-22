@@ -37,17 +37,11 @@ class Data {
 
         int getGiorno() const;
 
-        void setGiorno(int giorno);
-
         int getMese() const;
-
-        void setMese(int mese);
 
         int getAnno() const;
 
-        void setAnno(int anno);
-
-        bool isValid() const;
+        bool isValid(int giorno, int mese, int anno) const;
 
         std::string toString() const;
 };

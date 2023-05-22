@@ -19,7 +19,7 @@ class Conto {
 
         float getSaldo() const;
 
-        void setSaldo(float saldo);
+        bool setSaldo(float saldo);
 
         bool aggiungiTransazione(const Transazione& t);
 
@@ -32,6 +32,12 @@ class Conto {
         void scaricaTransazione(const Transazione &t);
 
         void scaricaTransazioneTest(const Transazione &t);
+
+        void modificaTransazione();
+
+        void cancellaTransazione();
+
+        void riscriviFile();
 };
 
 

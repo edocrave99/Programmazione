@@ -31,7 +31,7 @@ float Transazione::getImporto() const {
 
 bool Transazione::setImporto(float importo) {
     if(importo > 0){
-        Transazione::importo = importo;
+        Transazione::importo = importo;         //le transazioni devono tutte avere importo superiore a 0
         return true;
     }
     else return false;

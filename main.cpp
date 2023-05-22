@@ -17,7 +17,7 @@ int main() {
     cin >> descrizione;
     Conto c(descrizione, 0);
     auto *t = new Transazione();
-    auto *d = new Data();
+    Data *d;
 
     int sel1, sel2, g, m, a;
     //le variabili sel1 e sel2 servono per gestire gli switch case, mentre g,m,a servonjo invece per la data delle eventuali nuove transazioni
@@ -36,6 +36,8 @@ int main() {
         cout << "1) Visualizza il tuo saldo" << endl;
         cout << "2) Effettua una transazione" << endl;
         cout << "3) Visualizza il tuo storico delle transazioni" << endl;
+        cout << "4) Modifica una transazione" << endl;
+        cout << "5) Cancella una transazione" << endl;
         cout << "0) Uscire" << endl;
 
         cout << "Inserire il numero corrispondente all'operazione che si desidera effettuare:" << endl;
@@ -82,13 +84,10 @@ int main() {
                             cout << "Inserire l'anno in cui e' stata effettuata la transazione: " << endl;
                             cin >> a;
 
-                            d->setGiorno(g);
-                            d->setMese(m);
-                            d->setAnno(a);
-
-                            if (d->isValid())
+                            d=new Data(g,m,a);
+                            if (d->isValid(g,m,a))
                                 f2 = true;
-                            else cout << "La data inserita non e' valida, si prega di inserirne un altra!" << endl;
+                            else cout << ", si prega di inserirne un altra!" << endl;
                         }
 
                         t->setTipo(type);
@@ -122,12 +121,10 @@ int main() {
                             cin >> m;
                             cout << "Inserire l'anno in cui e' stata effettuata la transazione:" << endl;
                             cin >> a;
-                            d->setGiorno(g);
-                            d->setMese(m);
-                            d->setAnno(a);
-                            if (d->isValid())
+                            d=new Data(g,m,a);
+                            if (d->isValid(g,m,a))
                                 f2 = true;
-                            else cout << "La data inserita non e' valida, si prega di inserirne un altra!" << endl;
+                            else cout << ", si prega di inserirne un altra!" << endl;
                         }
                         t->setTipo(type);
                         t->setDescrizione(descrizione);
@@ -155,6 +152,16 @@ int main() {
 
             case 3:
                 c.stampaTransazioni();
+
+                break;
+
+            case 4:
+                c.modificaTransazione();
+
+                break;
+
+            case 5:
+                c.cancellaTransazione();
 
                 break;
 
