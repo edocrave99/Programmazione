@@ -15,7 +15,7 @@ protected:
 
     Conto c;
     Transazione t;
-    Data d;
+    Data *d;
     ifstream file;
 };
 
@@ -38,13 +38,15 @@ TEST_F(ContoSuite, TestTransazioneUscita){
 TEST_F(ContoSuite, TestTransazioneUscitaNegata){
     t.setImporto(2500);
     t.setTipo(false);
+    d=new Data();
+    t.setData(*d);
     c.aggiungiTransazioneTest(t);
 
     ASSERT_EQ(1000, c.getSaldo());
 }
 
 TEST_F(ContoSuite, TestControlloFile){
-    file.open((R"(C:\Elaborato\cmake-build-debug\Conto.txt)"));
+    file.open("Conto.txt");
     float s, i;
     bool type;
     string desc;
@@ -53,13 +55,11 @@ TEST_F(ContoSuite, TestControlloFile){
     s=c.getSaldo();
 
     while(file >> type >> i >> desc >> g >> m >> a ) {
-        d.setGiorno(g);
-        d.setMese(m);
-        d.setAnno(a);
+        d=new Data(g,m,a);
         t.setTipo(type);
         t.setImporto(i);
         t.setDescrizione(desc);
-        t.setData(d);
+        t.setData(*d);
 
         c.scaricaTransazioneTest(t);
 
@@ -68,4 +68,20 @@ TEST_F(ContoSuite, TestControlloFile){
         else s -= i;
     }
     ASSERT_EQ(s, c.getSaldo());
+}
+
+TEST_F(ContoSuite, TestCancellazioneFallita){
+    c.cancellaTransazioneTest(0);
+
+    ASSERT_EQ(1000, c.getSaldo());
+}
+
+TEST_F(ContoSuite, TestModificaFallita){
+    t.setImporto(1500);
+    t.setTipo(true);
+    d=new Data();
+    t.setData(*d);
+    c.modificaTransazioneTest(0, t);
+
+    ASSERT_EQ(1000, c.getSaldo());
 }

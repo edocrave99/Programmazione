@@ -15,13 +15,13 @@ class Conto {
     public:
         Conto();
 
-        explicit Conto(std::string nome, float saldo);
+        Conto(std::string nome, float saldo);
 
         float getSaldo() const;
 
         bool setSaldo(float saldo);
 
-        bool aggiungiTransazione(const Transazione& t);
+        bool aggiungiTransazione(const Transazione &t);
 
         void aggiungiTransazioneTest(const Transazione& t);
 
@@ -35,9 +35,14 @@ class Conto {
 
         void modificaTransazione();
 
+        void modificaTransazioneTest(int pos, const Transazione &t);
+
         void cancellaTransazione();
 
+        void cancellaTransazioneTest(int pos);
+
         void riscriviFile();
+
 };
 
 

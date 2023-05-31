@@ -130,7 +130,7 @@ void Conto::scaricaTransazione(const Transazione &t){
 }
 
 void Conto::scaricaTransazioneTest(const Transazione &t){
-    //si differenzia da scaricaTransazione() in quanto questo metodo non inserisce la transazione in listaTransazioni, infatti viene usato
+    //si differenzia da scaricaTransazione() in quanto questo metodo non cancella la transazione da listaTransazioni, dato che viene usato
     //solamente all'interno della unit testing
 
     if(t.getTipo()==0)
@@ -139,91 +139,147 @@ void Conto::scaricaTransazioneTest(const Transazione &t){
         Conto::saldo+=t.getImporto();
 }
 
-void Conto::modificaTransazione(){
-    int pos, i, sel, a;     //i e sel vengono usati anche per la nuova data
-    string desc;
-    bool f=false;
-    Data *d;
-
-    stampaTransazioni();
-    while (!f) {
-        cout << "Inserire la posizione della transazione che si desidera modificare: " << endl;
-        cin >> pos;
-        if (pos < 0 || pos >= listaTransazioni.size())
-            cout << "Il numero inserito non e' valido, si prega di inserirne un altro!" << endl;
-        else f = true;
+void Conto::modificaTransazione() {
+    if (listaTransazioni.empty()) {
+        cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
     }
-    auto it=listaTransazioni.begin();
-    advance(it, pos);
-    i=(*it).getImporto();
-    if((*it).getTipo())
-        Conto::saldo -= i;
-    else Conto::saldo += i;
+    else {
+        int pos, i, sel, a;     //i e sel vengono usati anche per la nuova data
+        string desc;
+        bool f = false;
+        Data *d;
 
-    while(f){
-        cout << "Inserire il tipo della transazione:" << endl;
-        cout << "0) In uscita" << endl;
-        cout << "1) In ingresso" << endl;
-        cin >> sel;
-        if(sel==0 || sel ==1)
-            f=false;
-        else cout << "Il numero inserito non e' valido!" << endl;
+        stampaTransazioni();
+        while (!f) {
+            cout << "Inserire la posizione della transazione che si desidera modificare: " << endl;
+            cin >> pos;
+            if (pos < 0 || pos >= listaTransazioni.size())
+                cout << "Il numero inserito non e' valido, si prega di inserirne un altro!" << endl;
+            else f = true;
+        }
+        auto it = listaTransazioni.begin();
+        advance(it, pos);
+        if ((*it).getTipo())
+            Conto::saldo -= (*it).getImporto();
+        else Conto::saldo += (*it).getImporto();
+
+        while (f) {
+            cout << "Inserire il tipo della transazione:" << endl;
+            cout << "0) In uscita" << endl;
+            cout << "1) In ingresso" << endl;
+            cin >> sel;
+            if (sel == 0 || sel == 1)
+                f = false;
+            else cout << "Il numero inserito non e' valido!" << endl;
+        }
+        if (sel == 0)
+            (*it).setTipo(false);
+        else (*it).setTipo(true);
+
+        while (!f) {
+            cout << "Inserire l'importo della transazione:" << endl;
+            cin >> i;
+            if ((*it).getTipo()==true && Conto::saldo < i) {
+                cout << "Non e' possibile effettuare una transazione in uscita con il seguente importo, alrimenti "
+                        "il saldo andrabbe in negativo, si prega di inserirne un altra!" << endl;
+                f = false;
+            }
+            else f = (*it).setImporto(i);
+        }
+
+        cout << "Inserire una descrizione per la transazione:" << endl;
+        cin >> desc;
+        (*it).setDescrizione(desc);
+
+        while (f) {
+            cout << "Inserire il giorno in cui e' stata effettuata la transazione:" << endl;
+            cin >> i;
+            cout << "Inserire il mese in cui e' stata effettuata la transazione: " << endl;
+            cin >> sel;
+            cout << "Inserire l'anno in cui e' stata effettuata la transazione: " << endl;
+            cin >> a;
+
+            d = new Data(i, sel, a);
+            if (d->isValid(i, sel, a))
+                f = false;
+            else cout << ", si prega di inserirne un altra!" << endl;
+        }
+        (*it).setData(*d);
+
+        if ((*it).getTipo()==true) {
+            Conto::saldo += (*it).getImporto();
+            riscriviFile();
+            cout << "La modifica e' stata effettuata con successo!" << endl;
+        }
+        else {
+            Conto::saldo -= (*it).getImporto();
+            riscriviFile();
+            cout << "La modifica e' stata effettuata con successo!" << endl;
+        }
     }
-    if(sel==0)
-        (*it).setTipo(false);
-    else (*it).setTipo(true);
+}
 
-    while(!f) {
-        cout << "Inserire l'importo della transazione:" << endl;
-        cin >> i;
-        f=(*it).setImporto(i);
+void Conto::modificaTransazioneTest(int pos, const Transazione &t) {
+    // si differenzia da modificaTransazione() in quanto questo metodo non modifica la transazione in listaTransazioni, infatti viene usato
+    // solamente nelle unit testing
+
+    if (listaTransazioni.empty()) {
+        cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
     }
-    if((*it).getTipo())
-        Conto::saldo -= i;
-    else Conto::saldo += i;
+    else {
+        auto it = listaTransazioni.begin();
+        advance(it, pos);
+        if ((*it).getTipo())
+            Conto::saldo -= (*it).getImporto();
+        else Conto::saldo += (*it).getImporto();
 
-    cout << "Inserire una descrizione per la transazione:" << endl;
-    cin >> desc;
-    (*it).setDescrizione(desc);
-
-    while(f) {
-        cout << "Inserire il giorno in cui e' stata effettuata la transazione:" << endl;
-        cin >> i;
-        cout << "Inserire il mese in cui e' stata effettuata la transazione: " << endl;
-        cin >> sel;
-        cout << "Inserire l'anno in cui e' stata effettuata la transazione: " << endl;
-        cin >> a;
-
-        d = new Data(i, sel, a);
-        if (d->isValid(i,sel,a))
-            f = false;
-        else cout << ", si prega di inserirne un altra!" << endl;
+        if(t.getTipo()==true)
+            Conto::saldo += t.getImporto();
+        else Conto::saldo -= t.getImporto();
     }
-    (*it).setData(*d);
-
-    cout << "La modifica e' stata effettuata con successo!" << endl;
-    riscriviFile();
 }
 
 
-void Conto::cancellaTransazione(){
-    int pos, i;
-    bool f=false;
-    stampaTransazioni();
-    while (!f) {
-        cout << "Inserire la posizione della transazione che si desidera rimuovere: " << endl;
-        cin >> pos;
-        if (pos < 0 || pos >= listaTransazioni.size())
-            cout << "Il numero inserito non e' valido, si prega di inserirne un altro!" << endl;
-        else f = true;
+void Conto::cancellaTransazione() {
+    if (listaTransazioni.empty()) {
+        cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
+    } else {
+        int pos;
+        bool f = false;
+        stampaTransazioni();
+        while (!f) {
+            cout << "Inserire la posizione della transazione che si desidera rimuovere: " << endl;
+            cin >> pos;
+            if (pos < 0 || pos >= listaTransazioni.size())
+                cout << "Il numero inserito non e' valido, si prega di inserirne un altro!" << endl;
+            else f = true;
+        }
+        auto it = listaTransazioni.begin();
+        advance(it, pos);
+        if ((*it).getTipo())
+            Conto::saldo -= (*it).getImporto();
+        else Conto::saldo += (*it).getImporto();
+        listaTransazioni.erase(it);
+        cout << "La cancellazione e' stata effettuata con successo!" << endl;
+        riscriviFile();
     }
-    auto it=listaTransazioni.begin();
-    advance(it, pos);
-    i=(*it).getImporto();
-    Conto::saldo-=i;
-    listaTransazioni.erase(it);
-    cout << "La cancellazione e' stata effettuata con successo!" << endl;
-    riscriviFile();
+}
+
+void Conto::cancellaTransazioneTest(int pos) {
+    // si differenzia da cancellaTransazione() in quanto in questo metodo non viene effettuato l'aggiornamento del file
+    // dato che questo metodo viene usato solo nelle unit testing
+
+    if (listaTransazioni.empty()) {
+        cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
+    } else {
+        stampaTransazioni();
+        auto it = listaTransazioni.begin();
+        advance(it, pos);
+        if ((*it).getTipo())
+            Conto::saldo -= (*it).getImporto();
+        else Conto::saldo += (*it).getImporto();
+        cout << "La cancellazione e' stata effettuata con successo!" << endl;
+    }
 }
 
 void Conto::riscriviFile(){
