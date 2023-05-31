@@ -67,28 +67,33 @@ void Conto::aggiungiTransazioneTest(const Transazione &t) {
 }
 
 void Conto::stampaTransazioni() const {
-    cout << "TRANSAZIONI:" << endl;
-    cout << endl;
-    int i = 0;
-    for (const auto &t: listaTransazioni) {
-        string s;
-        cout << i << ")" << endl;
-        cout << "Tipo: ";
-        auto tipo = t.getTipo();
-        if (tipo == true)
-            cout << "In ingresso" << endl;
-        else cout << "In uscita" << endl;
-        cout << "Importo: ";
-        cout << t.getImporto() << endl;
-        cout << "Data: ";
-        auto d = t.getData();
-        s=d.toString();
-        cout << s;
+    if (listaTransazioni.empty()) {
+        cout << "La lista delle transazioni al momento e' vuota!" << endl;
+    }
+    else{
+        cout << "TRANSAZIONI:" << endl;
         cout << endl;
-        cout << "Descrizione: ";
-        cout << t.getDescrizione() << endl;
-        cout << endl;
-        i++;
+        int i = 0;
+        for (const auto &t: listaTransazioni) {
+            string s;
+            cout << i << ")" << endl;
+            cout << "Tipo: ";
+            auto tipo = t.getTipo();
+            if (tipo == true)
+                cout << "In ingresso" << endl;
+            else cout << "In uscita" << endl;
+            cout << "Importo: ";
+            cout << t.getImporto() << endl;
+            cout << "Data: ";
+            auto d = t.getData();
+            s = d.toString();
+            cout << s;
+            cout << endl;
+            cout << "Descrizione: ";
+            cout << t.getDescrizione() << endl;
+            cout << endl;
+            i++;
+        }
     }
 }
 
@@ -100,16 +105,16 @@ void Conto::aggiornamentoIniziale(){
     float s;
     string descrizione;          //variabili per la lettura dei dati delle transazioni sul file
     int g, m, a;
-    auto *t = new Transazione();
-    Data *d;
+    auto t = Transazione();
+    Data d;
 
     while(file >> type >> s >> descrizione >> g >> m >> a) {
-        d=new Data(g,m,a);
-        t->setTipo(type);                                   //ciclo per prelevare le transazioni dal file ed inserirle nella listaTransazioni
-        t->setImporto(s);
-        t->setDescrizione(descrizione);
-        t->setData(*d);
-        scaricaTransazione(*t);
+        d=Data(g,m,a);
+        t.setTipo(type);                                   //ciclo per prelevare le transazioni dal file ed inserirle nella listaTransazioni
+        t.setImporto(s);
+        t.setDescrizione(descrizione);
+        t.setData(d);
+        scaricaTransazione(t);
     }
 
     file.close();
@@ -147,7 +152,7 @@ void Conto::modificaTransazione() {
         int pos, i, sel, a;     //i e sel vengono usati anche per la nuova data
         string desc;
         bool f = false;
-        Data *d;
+        Data d;
 
         stampaTransazioni();
         while (!f) {
@@ -179,7 +184,7 @@ void Conto::modificaTransazione() {
         while (!f) {
             cout << "Inserire l'importo della transazione:" << endl;
             cin >> i;
-            if ((*it).getTipo()==true && Conto::saldo < i) {
+            if ((*it).getTipo() && Conto::saldo < i) {
                 cout << "Non e' possibile effettuare una transazione in uscita con il seguente importo, alrimenti "
                         "il saldo andrabbe in negativo, si prega di inserirne un altra!" << endl;
                 f = false;
@@ -199,14 +204,14 @@ void Conto::modificaTransazione() {
             cout << "Inserire l'anno in cui e' stata effettuata la transazione: " << endl;
             cin >> a;
 
-            d = new Data(i, sel, a);
-            if (d->isValid(i, sel, a))
+            d = Data(i, sel, a);
+            if (d.isValid(i, sel, a))
                 f = false;
             else cout << ", si prega di inserirne un altra!" << endl;
         }
-        (*it).setData(*d);
+        (*it).setData(d);
 
-        if ((*it).getTipo()==true) {
+        if ((*it).getTipo()) {
             Conto::saldo += (*it).getImporto();
             riscriviFile();
             cout << "La modifica e' stata effettuata con successo!" << endl;
@@ -233,7 +238,7 @@ void Conto::modificaTransazioneTest(int pos, const Transazione &t) {
             Conto::saldo -= (*it).getImporto();
         else Conto::saldo += (*it).getImporto();
 
-        if(t.getTipo()==true)
+        if(t.getTipo())
             Conto::saldo += t.getImporto();
         else Conto::saldo -= t.getImporto();
     }

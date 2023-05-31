@@ -37,3 +37,17 @@
 1957	5452	7072610913217146	googleTest/GoogleTests.exe	17ac14ff32a447d6
 10	1803	7072612324121682	googleTest/CMakeFiles/GoogleTests.dir/ContoFixture.cpp.obj	b149195a4e7a0141
 1804	5223	7072612358228603	googleTest/GoogleTests.exe	17ac14ff32a447d6
+15	1021	7072659155531283	CMakeFiles/core.dir/Data.cpp.obj	b0b5c7666e52eb08
+6	1067	7072659156009645	CMakeFiles/core.dir/main.cpp.obj	5b85fdb4d650e364
+1068	1181	7072659157155175	libcore.a	b94b1f66e36f399e
+1181	5558	7072659200818827	googleTest/GoogleTests.exe	17ac14ff32a447d6
+13	474	7072659249240043	CMakeFiles/Elaborato.dir/Data.cpp.obj	ab74c5bd2a42420
+3	542	7072659249905937	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
+18	568	7072659250185868	CMakeFiles/Elaborato.dir/Transazione.cpp.obj	d5fadd8ab6c053cb
+9	709	7072659251596976	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
+709	846	7072659252946802	Elaborato.exe	9213872975b94d6b
+14	1314	7072666094799367	CMakeFiles/Elaborato.dir/Data.cpp.obj	ab74c5bd2a42420
+6	1437	7072666096042401	CMakeFiles/Elaborato.dir/main.cpp.obj	6520083327201e34
+1437	1772	7072666099329874	Elaborato.exe	9213872975b94d6b
+10	1505	7072670927246308	CMakeFiles/Elaborato.dir/Conto.cpp.obj	c35c37b6da61a12f
+1506	1796	7072670930195445	Elaborato.exe	9213872975b94d6b

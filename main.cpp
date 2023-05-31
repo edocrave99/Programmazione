@@ -16,8 +16,7 @@ int main() {
     cout << "Inserire un nome per il proprio conto: " << endl;
     cin >> descrizione;
     Conto c(descrizione, 0);
-    auto *t = new Transazione();
-    Data *d;
+    auto t = Transazione();
 
     int sel1, sel2, g, m, a;
     //le variabili sel1 e sel2 servono per gestire gli switch case, mentre g,m,a servonjo invece per la data delle eventuali nuove transazioni
@@ -69,31 +68,32 @@ int main() {
                         cout << "Inserire il valore da aggiungere al saldo:" << endl;
                         while(!f2) {
                             cin >> s;
-                            f2=t->setImporto(s);
+                            f2=t.setImporto(s);
                             if(!f2)
                                 cout << "L'importo inserito non e' valido, si prega di inserirne un altro: " << endl;
                         }
                         cout << "Inserire una descrizione per la nuova transazione:" << endl;
                         cin >> descrizione;
                         f2=false;
-                        while(!f2) {
+                        do{
                             cout << "Inserire il giorno in cui e' stata effettuata la transazione:" << endl;
                             cin >> g;
-                            cout << "Inserire il mese in cui e' stata effettuata la transazione: " << endl;
+                            cout << "Inserire il mese in cui e' stata effettuata la transazione:" << endl;
                             cin >> m;
-                            cout << "Inserire l'anno in cui e' stata effettuata la transazione: " << endl;
+                            cout << "Inserire l'anno in cui e' stata effettuata la transazione:" << endl;
                             cin >> a;
-
-                            d=new Data(g,m,a);
-                            if (d->isValid(g,m,a))
-                                f2 = true;
-                            else cout << ", si prega di inserirne un altra!" << endl;
-                        }
-
-                        t->setTipo(type);
-                        t->setDescrizione(descrizione);
-                        t->setData(*d);
-                        f2=c.aggiungiTransazione(*t);
+                            try{
+                                Data d = Data(g,m,a);
+                                f2 = d.isValid(g,m,a);
+                                t.setTipo(type);
+                                t.setDescrizione(descrizione);
+                                t.setData(d);
+                            }
+                            catch (const invalid_argument& e) {
+                                cout << e.what() << endl;
+                            }
+                        } while(!f2);
+                        f2=c.aggiungiTransazione(t);
 
                         if(f2)
                             cout << "La transazione e' stata eseguita con successo" << endl;
@@ -107,29 +107,32 @@ int main() {
                         cout << "Inserire l'ammontare che si desidera prelevare:"<< endl;
                         while(!f2) {
                             cin >> s;
-                            f2=t->setImporto(s);
+                            f2=t.setImporto(s);
                             if(!f2)
                                 cout << "L'importo inserito non e' valido, si prega di inserirne un altro: " << endl;
                         }
                         cout << "Inserire una descrizione per la nuova transazione:" << endl;
                         cin >> descrizione;
                         f2=false;
-                        while(!f2) {
+                        do{
                             cout << "Inserire il giorno in cui e' stata effettuata la transazione:" << endl;
                             cin >> g;
                             cout << "Inserire il mese in cui e' stata effettuata la transazione:" << endl;
                             cin >> m;
                             cout << "Inserire l'anno in cui e' stata effettuata la transazione:" << endl;
                             cin >> a;
-                            d=new Data(g,m,a);
-                            if (d->isValid(g,m,a))
-                                f2 = true;
-                            else cout << ", si prega di inserirne un altra!" << endl;
-                        }
-                        t->setTipo(type);
-                        t->setDescrizione(descrizione);
-                        t->setData(*d);
-                        f2=c.aggiungiTransazione(*t);
+                            try{
+                                Data d = Data(g,m,a);
+                                f2 = d.isValid(g,m,a);
+                                t.setTipo(type);
+                                t.setDescrizione(descrizione);
+                                t.setData(d);
+                            }
+                            catch (const invalid_argument& e) {
+                                cout << e.what() << endl;
+                            }
+                        } while(!f2);
+                        f2=c.aggiungiTransazione(t);
 
                         if(f2)
                             cout << "La transazione e' stata eseguita con successo" << endl;

@@ -11,17 +11,12 @@ Data::Data() {
 }
 
 Data::Data(int giorno, int mese, int anno) {
-    int g, m, a;
-    g = giorno;
-    m = mese;
-    a = anno;
-    bool f= isValid(g, m, a);
-    if (f) {
-        Data::giorno = g;
-        Data::mese = m;
-        Data::anno = a;
-    }
-    else cout << "Non è stato possibile inserire la data, in quanto quella inserita non era valida";
+    bool f= isValid(giorno, mese, anno);
+    if (f==false)
+        throw invalid_argument("Non e' stato possibile inserire la data, in quanto quella inserita non era valida, si prega di inserirne un altra!");
+    Data::giorno = giorno;
+    Data::mese = mese;
+    Data::anno = anno;
 }
 
 int Data::getGiorno() const {
