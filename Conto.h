@@ -19,8 +19,6 @@ class Conto {
 
         float getSaldo() const;
 
-        bool setSaldo(float saldo);
-
         bool aggiungiTransazione(const Transazione &t, const std::string &path);
 
         void stampaTransazioni() const;

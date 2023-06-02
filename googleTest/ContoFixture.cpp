@@ -9,14 +9,11 @@ class ContoSuite : public ::testing::Test {
 
 protected:
 
-    virtual void SetUp(){
-        c.setSaldo(1000);
-    }
-
-    Conto c;
+    Conto c = Conto("Prova", 1000);
     Transazione t;
     Data d;
     ifstream file;
+
 };
 
 TEST_F(ContoSuite, TestTransazioneIngresso){
@@ -88,10 +85,6 @@ TEST_F(ContoSuite, TestCancellazioneRiuscita){
 }
 
 TEST_F(ContoSuite, TestModificaFallita){
-    t.setImporto(1500);
-    t.setTipo(true);
-    d=Data();
-    t.setData(d);
     c.modificaTransazione("ContoProva.txt");
 
     ASSERT_EQ(1000, c.getSaldo());

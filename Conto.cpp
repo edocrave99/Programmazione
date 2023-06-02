@@ -7,21 +7,13 @@
 using namespace std;
 
 Conto::Conto() {
-    setSaldo(0);
+    Conto::saldo=0;
 }
 
 Conto::Conto(const string &nome, float saldo) : nome(nome), saldo(saldo) {}
 
 float Conto::getSaldo() const {
     return saldo;
-}
-
-bool Conto::setSaldo(float saldo) {
-    if(saldo >=0) {
-        Conto::saldo = saldo;           //non è previsto il saldo negativo
-        return true;
-    }
-    else return false;
 }
 
 bool Conto::aggiungiTransazione(const Transazione &t, const string &path) {
