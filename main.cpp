@@ -25,7 +25,7 @@ int main() {
     bool f1 = false,type, f2;
     //f1 serve per gestire il ciclo all'interno del quale è inserito lo switch, f2  gestisce il ciclo per l'inserimento della data di una transazione, mentre type serve per stabilire il tipo delle transazioni (ingresso o uscita), type servira' invece per impostare il tipo delle transazioni
 
-    c.aggiornamentoIniziale();
+    c.aggiornamentoIniziale("Conto.txt");
     //le transazioni presenti sul file vengono inserite nella lista
 
     cout << "Benvenuto sul gestore di transazione finanziarie di Cravegni Edoardo" << endl;
@@ -93,7 +93,7 @@ int main() {
                                 cout << e.what() << endl;
                             }
                         } while(!f2);
-                        f2=c.aggiungiTransazione(t);
+                        f2=c.aggiungiTransazione(t, "Conto.txt");
 
                         if(f2)
                             cout << "La transazione e' stata eseguita con successo" << endl;
@@ -132,7 +132,7 @@ int main() {
                                 cout << e.what() << endl;
                             }
                         } while(!f2);
-                        f2=c.aggiungiTransazione(t);
+                        f2=c.aggiungiTransazione(t, "Conto.txt");
 
                         if(f2)
                             cout << "La transazione e' stata eseguita con successo" << endl;
@@ -159,12 +159,12 @@ int main() {
                 break;
 
             case 4:
-                c.modificaTransazione();
+                c.modificaTransazione("Conto.txt");
 
                 break;
 
             case 5:
-                c.cancellaTransazione();
+                c.cancellaTransazione("Conto.txt");
 
                 break;
 

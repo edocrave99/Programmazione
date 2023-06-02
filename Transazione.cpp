@@ -5,9 +5,15 @@ Transazione::Transazione() {
     setImporto(0);
 }
 
-Transazione::Transazione(bool tipo, const std::string &descrizione, float importo) : tipo(tipo),
-                                                                                     descrizione(descrizione),
-                                                                                     importo(importo) {}
+Transazione::Transazione(bool tipo, const std::string &descrizione, float importo, Data data) {
+    if(importo<0)
+        throw std::invalid_argument("Non e' stato possibile creare la transazione, in quanto l'importo inserito era negativo, si prega di inserirne un altro!");
+    else
+        Transazione::tipo=tipo;
+        Transazione::importo=importo;
+        Transazione::descrizione=descrizione;
+        Transazione::data=data;
+}
 
 bool Transazione::getTipo() const {
     return tipo;

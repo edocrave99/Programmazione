@@ -8,3 +8,7 @@ TEST(Data, DefaultConstructor) {
     ASSERT_EQ(1, d.getMese());
     ASSERT_EQ(2000, d.getAnno());
 }
+
+TEST(Data, Constructor) {
+    ASSERT_THROW(Data d(1, 15, 2020) , std::invalid_argument);
+}

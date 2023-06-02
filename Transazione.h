@@ -15,7 +15,7 @@ class Transazione {
 
         Transazione();
 
-        Transazione(bool tipo, const std::string &descrizione, float importo);
+        Transazione(bool tipo, const std::string &descrizione, float importo, Data data);
 
         bool getTipo() const;
 

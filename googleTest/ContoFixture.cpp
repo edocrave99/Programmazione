@@ -15,14 +15,17 @@ protected:
 
     Conto c;
     Transazione t;
-    Data *d;
+    Data d;
     ifstream file;
 };
 
 TEST_F(ContoSuite, TestTransazioneIngresso){
+    d=Data();
     t.setImporto(1500);
     t.setTipo(true);
-    c.aggiungiTransazioneTest(t);
+    t.setDescrizione("stipendio");
+    t.setData(d);
+    c.aggiungiTransazione(t, "ContoProva.txt");
 
     ASSERT_EQ(2500, c.getSaldo());
 }
@@ -30,7 +33,7 @@ TEST_F(ContoSuite, TestTransazioneIngresso){
 TEST_F(ContoSuite, TestTransazioneUscita){
     t.setImporto(250);
     t.setTipo(false);
-    c.aggiungiTransazioneTest(t);
+    c.aggiungiTransazione(t, "ContoProva.txt");
 
     ASSERT_EQ(750, c.getSaldo());
 }
@@ -38,9 +41,9 @@ TEST_F(ContoSuite, TestTransazioneUscita){
 TEST_F(ContoSuite, TestTransazioneUscitaNegata){
     t.setImporto(2500);
     t.setTipo(false);
-    d=new Data();
-    t.setData(*d);
-    c.aggiungiTransazioneTest(t);
+    d=Data();
+    t.setData(d);
+    c.aggiungiTransazione(t, "ContoProva.txt");
 
     ASSERT_EQ(1000, c.getSaldo());
 }
@@ -55,13 +58,12 @@ TEST_F(ContoSuite, TestControlloFile){
     s=c.getSaldo();
 
     while(file >> type >> i >> desc >> g >> m >> a ) {
-        d=new Data(g,m,a);
+        d=Data(g,m,a);
         t.setTipo(type);
         t.setImporto(i);
         t.setDescrizione(desc);
-        t.setData(*d);
-
-        c.scaricaTransazioneTest(t);
+        t.setData(d);
+        c.leggiTransazione(t);
 
         if (type == 1)
             s += i;
@@ -71,17 +73,26 @@ TEST_F(ContoSuite, TestControlloFile){
 }
 
 TEST_F(ContoSuite, TestCancellazioneFallita){
-    c.cancellaTransazioneTest(0);
+    c.cancellaTransazione("ContoProva.txt");
+    ASSERT_EQ(1000, c.getSaldo());
+}
 
+TEST_F(ContoSuite, TestCancellazioneRiuscita){
+    d=Data();
+    t.setImporto(1500);
+    t.setTipo(true);
+    t.setDescrizione("stipendio");
+    t.setData(d);
+    c.cancellaTransazione("ContoProva.txt");
     ASSERT_EQ(1000, c.getSaldo());
 }
 
 TEST_F(ContoSuite, TestModificaFallita){
     t.setImporto(1500);
     t.setTipo(true);
-    d=new Data();
-    t.setData(*d);
-    c.modificaTransazioneTest(0, t);
+    d=Data();
+    t.setData(d);
+    c.modificaTransazione("ContoProva.txt");
 
     ASSERT_EQ(1000, c.getSaldo());
 }

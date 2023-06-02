@@ -21,27 +21,19 @@ class Conto {
 
         bool setSaldo(float saldo);
 
-        bool aggiungiTransazione(const Transazione &t);
-
-        void aggiungiTransazioneTest(const Transazione& t);
+        bool aggiungiTransazione(const Transazione &t, std::string path);
 
         void stampaTransazioni() const;
 
-        void aggiornamentoIniziale();
+        void aggiornamentoIniziale(std::string path);
 
-        void scaricaTransazione(const Transazione &t);
+        void leggiTransazione(const Transazione &t);
 
-        void scaricaTransazioneTest(const Transazione &t);
+        void modificaTransazione(std::string path);
 
-        void modificaTransazione();
+        void cancellaTransazione(std::string path);
 
-        void modificaTransazioneTest(int pos, const Transazione &t);
-
-        void cancellaTransazione();
-
-        void cancellaTransazioneTest(int pos);
-
-        void riscriviFile();
+        void riscriviFile(std::string path);
 
 };
 

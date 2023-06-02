@@ -24,15 +24,15 @@ bool Conto::setSaldo(float saldo) {
     else return false;
 }
 
-bool Conto::aggiungiTransazione(const Transazione &t) {
+bool Conto::aggiungiTransazione(const Transazione &t, string path) {
     ofstream addt;
     //dichairo un oggetto di tipo ofstream(solo scrittura) che servira' nel caso in cui si aggiungano delle transazioni
 
-    addt.open("Conto.txt", std::ios::app);
+    addt.open(path, std::ios::app);
     //apre il indicando di posizionarsi in scrittura sempre alla fine del file, in modo tale da non sovrascrivere le altre transazioni
 
     bool r = true;
-    auto *d = new Data();
+    Data d;
 
     if(t.getTipo()==0)
         if(t.getImporto()>saldo)
@@ -40,30 +40,19 @@ bool Conto::aggiungiTransazione(const Transazione &t) {
         else {
             listaTransazioni.push_back(t);
             saldo-=t.getImporto();
-            *d = t.getData();
-            addt << t.getTipo() << " " << t.getImporto() << " "<< t.getDescrizione() << " " << d->getGiorno() << " " << d->getMese()<< " " << d->getAnno() << "\n";
+            d = t.getData();
+            addt << t.getTipo() << " " << t.getImporto() << " "<< t.getDescrizione() << " " << d.getGiorno() << " " << d.getMese()<< " " << d.getAnno() << "\n";
         }
     else {
         listaTransazioni.push_back(t);
         saldo+=t.getImporto();
-        *d = t.getData();
-        addt << t.getTipo() << " " << t.getImporto() << " "<< t.getDescrizione() << " " << d->getGiorno() << " " << d->getMese()<< " " << d->getAnno() << "\n";
+        d = t.getData();
+        addt << t.getTipo() << " " << t.getImporto() << " "<< t.getDescrizione() << " " << d.getGiorno() << " " << d.getMese()<< " " << d.getAnno() << "\n";
     }
     addt.close();
     //funzione utilizzata per poter chiudere il file associato all'oggetto
 
     return r;
-}
-
-void Conto::aggiungiTransazioneTest(const Transazione &t) {
-    //Metodo usato nella unit testing in modo da non alterare listaTransazioni ed il file contenente le transazioni
-
-    if(t.getTipo()==1)
-        saldo+=t.getImporto();
-    else if(t.getImporto() <= saldo)
-            saldo-=t.getImporto();
-         else
-            cout << "Non e' stato possibile effettuare la transazione in quanto il saldo attuale non era sufficiente" ;
 }
 
 void Conto::stampaTransazioni() const {
@@ -79,7 +68,7 @@ void Conto::stampaTransazioni() const {
             cout << i << ")" << endl;
             cout << "Tipo: ";
             auto tipo = t.getTipo();
-            if (tipo == true)
+            if (tipo)
                 cout << "In ingresso" << endl;
             else cout << "In uscita" << endl;
             cout << "Importo: ";
@@ -97,8 +86,9 @@ void Conto::stampaTransazioni() const {
     }
 }
 
-void Conto::aggiornamentoIniziale(){
-    ifstream file("Conto.txt");
+void Conto::aggiornamentoIniziale(string path){
+    ifstream file;
+    file.open(path);
     //apre il file di testo contenente le transazioni usando un oggetto della classe ifstream(solo lettura)
 
     bool type;
@@ -114,13 +104,13 @@ void Conto::aggiornamentoIniziale(){
         t.setImporto(s);
         t.setDescrizione(descrizione);
         t.setData(d);
-        scaricaTransazione(t);
+        leggiTransazione(t);
     }
 
     file.close();
 }
 
-void Conto::scaricaTransazione(const Transazione &t){
+void Conto::leggiTransazione(const Transazione &t){
     //si differenzia da aggiungiTransazione() in quanto questo metodo non scrive sul file, ed infatti viene utilizzato solamente nel metodo
     // aggiornamentoIniziale() all'avvio del programma
 
@@ -134,17 +124,7 @@ void Conto::scaricaTransazione(const Transazione &t){
     }
 }
 
-void Conto::scaricaTransazioneTest(const Transazione &t){
-    //si differenzia da scaricaTransazione() in quanto questo metodo non cancella la transazione da listaTransazioni, dato che viene usato
-    //solamente all'interno della unit testing
-
-    if(t.getTipo()==0)
-        Conto::saldo-=t.getImporto();
-    else
-        Conto::saldo+=t.getImporto();
-}
-
-void Conto::modificaTransazione() {
+void Conto::modificaTransazione(string path) {
     if (listaTransazioni.empty()) {
         cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
     }
@@ -213,39 +193,18 @@ void Conto::modificaTransazione() {
 
         if ((*it).getTipo()) {
             Conto::saldo += (*it).getImporto();
-            riscriviFile();
+            riscriviFile(path);
             cout << "La modifica e' stata effettuata con successo!" << endl;
         }
         else {
             Conto::saldo -= (*it).getImporto();
-            riscriviFile();
+            riscriviFile(path);
             cout << "La modifica e' stata effettuata con successo!" << endl;
         }
     }
 }
 
-void Conto::modificaTransazioneTest(int pos, const Transazione &t) {
-    // si differenzia da modificaTransazione() in quanto questo metodo non modifica la transazione in listaTransazioni, infatti viene usato
-    // solamente nelle unit testing
-
-    if (listaTransazioni.empty()) {
-        cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
-    }
-    else {
-        auto it = listaTransazioni.begin();
-        advance(it, pos);
-        if ((*it).getTipo())
-            Conto::saldo -= (*it).getImporto();
-        else Conto::saldo += (*it).getImporto();
-
-        if(t.getTipo())
-            Conto::saldo += t.getImporto();
-        else Conto::saldo -= t.getImporto();
-    }
-}
-
-
-void Conto::cancellaTransazione() {
+void Conto::cancellaTransazione(string path) {
     if (listaTransazioni.empty()) {
         cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
     } else {
@@ -266,31 +225,16 @@ void Conto::cancellaTransazione() {
         else Conto::saldo += (*it).getImporto();
         listaTransazioni.erase(it);
         cout << "La cancellazione e' stata effettuata con successo!" << endl;
-        riscriviFile();
+        riscriviFile(path);
     }
 }
 
-void Conto::cancellaTransazioneTest(int pos) {
-    // si differenzia da cancellaTransazione() in quanto in questo metodo non viene effettuato l'aggiornamento del file
-    // dato che questo metodo viene usato solo nelle unit testing
-
-    if (listaTransazioni.empty()) {
-        cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
-    } else {
-        stampaTransazioni();
-        auto it = listaTransazioni.begin();
-        advance(it, pos);
-        if ((*it).getTipo())
-            Conto::saldo -= (*it).getImporto();
-        else Conto::saldo += (*it).getImporto();
-        cout << "La cancellazione e' stata effettuata con successo!" << endl;
-    }
-}
-
-void Conto::riscriviFile(){
-    remove("Conto.txt");
-    ofstream file("Conto.txt");
-    for( auto it=listaTransazioni.begin(); it!=listaTransazioni.end();it++)
-        file << (*it).getTipo() << " " << (*it).getImporto() << " " << (*it).getDescrizione() << " " << (*it).getData().getGiorno() << " " << (*it).getData().getMese() << " " << (*it).getData().getAnno() << "\n";
+void Conto::riscriviFile(string path){
+    const char* cpath = path.c_str();
+    remove(cpath);
+    ofstream file;
+    file.open(path);
+    for(auto & it : listaTransazioni)
+        file << it.getTipo() << " " << it.getImporto() << " " << it.getDescrizione() << " " << it.getData().getGiorno() << " " << it.getData().getMese() << " " << it.getData().getAnno() << "\n";
     file.close();
 }

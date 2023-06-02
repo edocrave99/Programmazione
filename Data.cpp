@@ -11,8 +11,7 @@ Data::Data() {
 }
 
 Data::Data(int giorno, int mese, int anno) {
-    bool f= isValid(giorno, mese, anno);
-    if (f==false)
+    if (!isValid(giorno, mese, anno))
         throw invalid_argument("Non e' stato possibile inserire la data, in quanto quella inserita non era valida, si prega di inserirne un altra!");
     Data::giorno = giorno;
     Data::mese = mese;
