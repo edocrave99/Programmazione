@@ -15,25 +15,25 @@ class Conto {
     public:
         Conto();
 
-        Conto(std::string nome, float saldo);
+        Conto(const std::string &nome, float saldo);
 
         float getSaldo() const;
 
         bool setSaldo(float saldo);
 
-        bool aggiungiTransazione(const Transazione &t, std::string path);
+        bool aggiungiTransazione(const Transazione &t, const std::string &path);
 
         void stampaTransazioni() const;
 
-        void aggiornamentoIniziale(std::string path);
+        void aggiornamentoIniziale(const std::string &path);
 
         void leggiTransazione(const Transazione &t);
 
-        void modificaTransazione(std::string path);
+        void modificaTransazione(const std::string &path);
 
-        void cancellaTransazione(std::string path);
+        void cancellaTransazione(const std::string &path);
 
-        void riscriviFile(std::string path);
+        void riscriviFile(const std::string &path);
 
 };
 

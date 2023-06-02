@@ -10,7 +10,7 @@ Conto::Conto() {
     setSaldo(0);
 }
 
-Conto::Conto(string nome, float saldo) : nome(nome), saldo(saldo) {}
+Conto::Conto(const string &nome, float saldo) : nome(nome), saldo(saldo) {}
 
 float Conto::getSaldo() const {
     return saldo;
@@ -24,7 +24,7 @@ bool Conto::setSaldo(float saldo) {
     else return false;
 }
 
-bool Conto::aggiungiTransazione(const Transazione &t, string path) {
+bool Conto::aggiungiTransazione(const Transazione &t, const string &path) {
     ofstream addt;
     //dichairo un oggetto di tipo ofstream(solo scrittura) che servira' nel caso in cui si aggiungano delle transazioni
 
@@ -86,7 +86,7 @@ void Conto::stampaTransazioni() const {
     }
 }
 
-void Conto::aggiornamentoIniziale(string path){
+void Conto::aggiornamentoIniziale(const string &path){
     ifstream file;
     file.open(path);
     //apre il file di testo contenente le transazioni usando un oggetto della classe ifstream(solo lettura)
@@ -124,7 +124,7 @@ void Conto::leggiTransazione(const Transazione &t){
     }
 }
 
-void Conto::modificaTransazione(string path) {
+void Conto::modificaTransazione(const string &path) {
     if (listaTransazioni.empty()) {
         cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
     }
@@ -204,7 +204,7 @@ void Conto::modificaTransazione(string path) {
     }
 }
 
-void Conto::cancellaTransazione(string path) {
+void Conto::cancellaTransazione(const string &path) {
     if (listaTransazioni.empty()) {
         cout << "Non e' stato possibile modificare una transazione, perche' la lista al momento e' vuota!" << endl;
     } else {
@@ -229,7 +229,7 @@ void Conto::cancellaTransazione(string path) {
     }
 }
 
-void Conto::riscriviFile(string path){
+void Conto::riscriviFile(const string &path){
     const char* cpath = path.c_str();
     remove(cpath);
     ofstream file;

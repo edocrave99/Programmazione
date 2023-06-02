@@ -99,3 +99,9 @@
 1263	4722	7073984492569205	googleTest/GoogleTests.exe	17ac14ff32a447d6
 5	1256	7073986737339623	googleTest/CMakeFiles/GoogleTests.dir/ContoFixture.cpp.obj	b149195a4e7a0141
 1257	4779	7073986772490599	googleTest/GoogleTests.exe	17ac14ff32a447d6
+5	639	7074036390835590	CMakeFiles/core.dir/main.cpp.obj	5b85fdb4d650e364
+10	717	7074036391603537	CMakeFiles/core.dir/Conto.cpp.obj	9f6427e72547655f
+717	824	7074036392702529	libcore.a	b94b1f66e36f399e
+15	1580	7074036400255172	googleTest/CMakeFiles/GoogleTests.dir/ContoTest.cpp.obj	2b2be9d3b0f29ff1
+21	1700	7074036401411770	googleTest/CMakeFiles/GoogleTests.dir/ContoFixture.cpp.obj	b149195a4e7a0141
+1701	5988	7074036444259926	googleTest/GoogleTests.exe	17ac14ff32a447d6
