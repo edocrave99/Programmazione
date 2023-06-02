@@ -29,7 +29,7 @@ class Transazione {
 
         bool setImporto(float importo);
 
-        const Data &getData() const
+        const Data &getData() const;
 
         void setData(const Data &data);
 };
